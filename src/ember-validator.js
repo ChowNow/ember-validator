@@ -384,7 +384,7 @@ Ember.Validator.Result = Ember.ObjectProxy.extend({
   errors: function() {
     var content = this.get('content');
 
-    return Ember.keys(content).reduce(function(errors, key) {
+    return Object.keys(content).reduce(function(errors, key) {
       errors.pushObject(content.get(key));
       return errors;
     }, []);
@@ -406,7 +406,7 @@ Ember.Validator.Result = Ember.ObjectProxy.extend({
    */
   isValid: function() {
     return Ember.isEmpty(this.get('errors'));
-  }.property('errors.@each')
+  }.property('errors.[]')
 });
 
 /**
@@ -497,7 +497,7 @@ Ember.Validator.Support = Ember.Mixin.create({
     var self = this,
         validations = this.get('validations'),
         Validator = Ember.Validator,
-        keys = Ember.keys(validations),
+        keys = Object.keys(validations),
         defaultOptions = Em.copy(Ember.Validator.options);
 
     if (options) {

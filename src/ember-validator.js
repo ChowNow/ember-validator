@@ -406,14 +406,14 @@ Ember.Validator.Result = Ember.ObjectProxy.extend({
    * @property errors
    * @type {Array}
    */
-  errors: function() {
+  errors: Ember.computed('content', function() {
     var content = this.get('content');
 
     return Object.keys(content).reduce(function(errors, key) {
       errors.pushObject(content.get(key));
       return errors;
     }, []);
-  }.property('content'),
+  }),
 
   /**
    * An array of all the error messages generated
@@ -429,9 +429,9 @@ Ember.Validator.Result = Ember.ObjectProxy.extend({
    * @property isValid
    * @type {Boolean}
    */
-  isValid: function() {
+  isValid: Ember.computed('errors.[]', function() {
     return Ember.isEmpty(this.get('errors'));
-  }.property('errors.[]')
+  })
 });
 
 /**

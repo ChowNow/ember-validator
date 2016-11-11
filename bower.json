@@ -1,7 +1,7 @@
 {
   "name": "ember-validator",
   "main": "ember-validator.js",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "homepage": "https://github.com/narkeeso/ember-validator",
   "authors": [
     "Michael Narciso <narkeeso@gmail.com>"
